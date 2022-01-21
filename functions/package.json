@@ -8,7 +8,7 @@
   "author": "Cody Nhan Pham aka. cyanicjamm",
   "license": "MIT",
   "engines": {
-    "node": "14"
+    "node": "16"
   },
   "main": "index.js",
   "dependencies": {
