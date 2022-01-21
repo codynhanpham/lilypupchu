@@ -1,0 +1,203 @@
+:root {
+    --body-background-color: #FFDFD3;
+    --body-text-color-1: #957DAD;
+    --body-text-color-2: #7d57a0;
+}
+
+body {
+    background-color: var(--body-background-color);
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.viewport-center {
+    position: fixed;
+    max-width: 100vw;
+    max-height: 100vh;
+    text-align: center;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.main-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.main-container img {
+    position: absolute;
+    width: 190vw;
+    height: 190vh;
+    object-fit: cover;
+    /* Add the blur effect */
+    filter: blur(40.0px) saturate(69%) brightness(69%);
+    -webkit-filter: blur(40.0px) saturate(69%) brightness(69%);
+}
+
+.image-container {
+    position: relative;
+    display: flex;
+    height: 75vh;
+    width: 75vw;
+    justify-content: center;
+    align-items: center;
+    order: 1;
+    flex: 1;
+    z-index: 1000;
+}
+
+.image-container img {
+    display: block;
+    position: absolute;
+    max-height: 96%;
+    max-width: 69%;
+    object-fit: contain;
+    filter: unset;
+    -webkit-filter: unset;
+    filter: drop-shadow(0px 0px 15px black)
+}
+
+
+
+h1 {
+    color: var(--body-text-color-2);
+    text-align: center;
+    font-weight: 600;
+    z-index: 100;
+}
+
+  
+.keys {
+    position: absolute;
+    top: -2em;
+    right: -2em;
+    margin: auto;
+    text-align: center;
+    line-height: 7.69rem;
+    height: 16rem;
+    transform: scale(0.5);
+    z-index: 10;
+}
+  
+.keys div {
+    font-size: 2.4rem;
+    display: inline-block;
+    padding: 1rem;
+    margin: 0 0.25rem;
+    height: 4rem;
+    width: 4rem;
+    line-height: 3.6rem;
+    text-align: center;
+    vertical-align: bottom;
+    color: white;
+    border-style: solid;
+    border-width: 0.4rem 0.45rem 0.6rem;
+    border-radius: 1rem;
+    border-color: #99e6bd #64b98c #64b98c #74d2a0;
+    background: #7de3ad;
+    -moz-transition: all 96ms ease;
+    -o-transition: all 96ms ease;
+    -webkit-transition: all 96ms ease;
+    transition: all 96ms ease;
+    filter: hue-rotate(227deg) brightness(70%) drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+    opacity: 0.6;
+}
+  
+.keys .pressed {
+    border-bottom-width: 0.4rem;
+    text-shadow: 0 0 10px white;
+    filter: hue-rotate(227deg) brightness(85%) drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
+    opacity: 0.75;
+}
+
+.temmie-on-right {
+    position: fixed;
+    flex-direction: column;
+    top: 50%;
+    transform: translateY(-50%);
+    height: fit-content;
+    right: 1.8vw;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.3em;
+    font-size: 1.8em;
+    font-weight: bold;
+    filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
+    transition: ease-out 250ms;
+}
+
+.vinky-on-left {
+    position: fixed;
+    flex-direction: column;
+    top: 50%;
+    transform: translateY(-50%);
+    height: fit-content;
+    left: 1.8vw;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.3em;
+    font-size: 1.8em;
+    font-weight: bold;
+    filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
+    transition: ease-out 250ms;
+}
+
+.both-on-top {
+    position: fixed;
+    flex-direction: column;
+    left: 50%;
+    transform: translateX(-50%);
+    height: fit-content;
+    top: 1.8vh;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.3em;
+    font-size: 1.8em;
+    font-weight: bold;
+    filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
+    transition: ease-out 250ms;
+}
+
+.else-down-bottom {
+    position: fixed;
+    flex-direction: column;
+    left: 50%;
+    transform: translateX(-50%);
+    height: fit-content;
+    bottom: 1.8vh;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.3em;
+    font-size: 1.8em;
+    font-weight: bold;
+    filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
+    transition: ease-out 250ms;
+}
+
+.popped {
+    filter: drop-shadow(0px 0px 15px rgb(255, 246, 219));
+    color: rgba(255, 255, 255, 0.952);
+    transition: 50ms;
+}

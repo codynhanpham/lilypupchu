@@ -1,3 +1,4 @@
+const functions = require("firebase-functions");
 const express = require('express');
 const app = express();
 const router = express.Router();
@@ -254,5 +255,7 @@ app.get('/poms/:count?/:subject?', async function(req, res) {
 
 app.listen(
     PORT,
-    () => console.log(`The app is now live on http://localhost:${PORT}`)
+    () => console.log(`The app is now live on http://<hostname>:${PORT}`)
 );
+
+exports.app = functions.https.onRequest(app);
