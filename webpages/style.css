@@ -88,7 +88,11 @@ h1 {
     z-index: 100;
 }
 
-  
+/* 
+    Keys styling credits goes to Leo Baker-Hytch
+        https://codepen.io/lbakerhytch/pen/AiJau
+
+*/
 .keys {
     position: absolute;
     top: -2em;
@@ -131,6 +135,8 @@ h1 {
     filter: hue-rotate(227deg) brightness(85%) drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
     opacity: 0.75;
 }
+
+
 
 .temmie-on-right {
     position: fixed;
