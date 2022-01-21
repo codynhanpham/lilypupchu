@@ -88,14 +88,11 @@ function nextImg() {
         mediaList_old_length = mediaList.length;
         fetchImages(batchSize).then(() => {
             inputLocked = false;
-            if (finish === false) {
-                let images = [];
-                for (let i=(mediaList_old_length); i<mediaList.length; i++) {
-                    images.push(mediaList[i].url);
-                };
-                console.log(mediaList.length);
-                preloadImages(images);
+            let images = [];
+            for (let i=(mediaList_old_length); i<mediaList.length; i++) {
+                images.push(mediaList[i].url);
             };
+            preloadImages(images);
         });
     };
 
@@ -110,31 +107,12 @@ var inputLocked = false;
 window.onload = function() {
     fetchImages(batchSize).then(() => {
         inputLocked = true;
-        setTimeout(() => {
-            if (finish === false) {
-                let images = [];
-                for (let i=0; i<mediaList.length; i++) {
-                    images.push(mediaList[i].url);
-                };
-                preloadImages(images);
-            };
-        }, 1000);
-        
-        if (mediaList.length < 5) {
-            inputLocked = true;
-            mediaList_old_length = mediaList.length;
-            fetchImages(batchSize).then(() => {
-                inputLocked = false;
-                if (finish === false) {
-                    let images = [];
-                    for (let i=(mediaList_old_length); i<mediaList.length; i++) {
-                        images.push(mediaList[i].url);
-                    };
-                    console.log(mediaList.length);
-                    preloadImages(images);
-                };
-            });
+
+        let images = [];
+        for (let i=(mediaList_old_length); i<mediaList.length; i++) {
+            images.push(mediaList[i].url);
         };
+        preloadImages(images);
 
         setTimeout(() => {
             document.getElementById("main-image").src=mediaList[0].url;

@@ -1,4 +1,3 @@
-const functions = require("firebase-functions");
 const express = require('express');
 const app = express();
 const router = express.Router();
@@ -257,5 +256,3 @@ app.listen(
     PORT,
     () => console.log(`The app is now live on http://<hostname>:${PORT}`)
 );
-
-exports.app = functions.https.onRequest(app);
