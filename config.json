@@ -1,6 +1,0 @@
-{
-    "twtToken": "AAAAAAAAAAAAAAAAAAAAALcnXQEAAAAAhGAJ%2FUyHPZ3GhLQSbbg6qWNj%2Be8%3DByaZC0mWCIhNaDan58IqUj4TwdLLS3WNPmWKlujQJromibjL7Z",
-    "mongooseConnect": "mongodb+srv://codynhanpham:5i4kR8E43AvcRiV@lilypupchu-database.qamkv.mongodb.net/Data",
-    "poms_model1": "https://raw.githubusercontent.com/codynhanpham/lilypupchu/main/recognition-models/hasBoth/",
-    "poms_model2": "https://raw.githubusercontent.com/codynhanpham/lilypupchu/main/recognition-models/notHasBoth/"
-}
