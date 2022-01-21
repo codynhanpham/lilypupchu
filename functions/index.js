@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const PORT = 6969;
 const { mongooseConnect } = require('./config.json');
+// const mongooseConnect = process.env.mongooseConnect;
 const mongoose = require('mongoose');
 const Media = require('./models/media.js');
 const { promisify } = require('util');
