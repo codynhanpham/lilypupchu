@@ -1,0 +1,27 @@
+{
+  "name": "lilypupchu-api",
+  "description": "A simple public API for people who love Temmie and DaVinky, the two pomeranians owned by LilyPichu of OfflineTV.",
+  "scripts": {
+    "start": "node ./functions/index.js"
+  },
+  "keywords": [],
+  "author": "Cody Nhan Pham aka. cyanicjamm",
+  "license": "MIT",
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "jimp": "^0.16.1",
+    "mongoose": "^6.0.2",
+    "node-fetch": "^3.1.0",
+    "resemblejs": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
