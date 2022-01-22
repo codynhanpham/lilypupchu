@@ -4,7 +4,6 @@ const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
 const cors = require('cors');
-var PORT = server.listen(process.env.PORT || 3000);
 // const { mongooseConnect } = require('./config.json');
 const mongooseConnect = process.env.mongooseConnect;
 const mongoose = require('mongoose');
@@ -266,6 +265,6 @@ app.get('/poms/:count?/:subject?', async function(req, res) {
 
 
 app.listen(
-    PORT,
+    process.env.PORT || 3000,
     () => console.log(`The app is now live on http://<hostname>:${PORT}`)
 );
