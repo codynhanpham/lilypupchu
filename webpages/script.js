@@ -1,7 +1,7 @@
 // Get images from server
 async function fetchImages(count) {
     const media = await fetch(
-        `http://localhost:6969/poms/${count}`,
+        `https://lilypupchu-api.herokuapp.com/poms/${count}`,
         {
             method: 'GET'
         }

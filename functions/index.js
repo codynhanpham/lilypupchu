@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const app = express();
 const router = express.Router();
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(express.static('webpages'));
+app.use('/', express.static('webpages'));
 
 
 let media = [];
@@ -136,13 +139,22 @@ function randomImage(subject,count) {
 
 // Send webpage:
 app.get('/', (req,res) => {
-    fs.readFileSync('./webpages/index.html', 'utf-8', (err, html) => {
+    fs.readFile(path.resolve(__dirname,'../webpages/index.html'), 'utf-8', (err, html) => {
         if (err) {
             res.status(500).send('Server is out of order.');
         };
         res.send(html)
     })
-})
+});
+app.get('/-cached', (req,res) => {
+    res.set('Cache-Control','public, max-age=300, s-maxage=600');
+    fs.readFile(path.resolve(__dirname,'../webpages/index.html'), 'utf-8', (err, html) => {
+        if (err) {
+            res.status(500).send('Server is out of order.');
+        };
+        res.send(html)
+    })
+});
 
 
 // A test ping
