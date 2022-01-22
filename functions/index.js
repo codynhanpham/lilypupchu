@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const router = express.Router();
@@ -132,6 +133,17 @@ function randomImage(subject,count) {
     }
     return imageList;
 };
+
+// Send webpage:
+app.get('/', (req,res) => {
+    fs.readFileSync('./webpages/index.html', 'utf-8', (err, html) => {
+        if (err) {
+            res.status(500).send('Server is out of order.');
+        };
+        res.send(html)
+    })
+})
+
 
 // A test ping
 app.get('/testmsg*', (req, res) => {
