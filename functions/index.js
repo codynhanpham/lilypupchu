@@ -83,6 +83,7 @@ function randomImage(subject,count) {
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: both[randomIndexes[i]].source,
+                subject: media[i].subject,
                 url: both[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${both[randomIndexes[i]].mediaID}`,
                 user: both[randomIndexes[i]].user,
@@ -97,6 +98,7 @@ function randomImage(subject,count) {
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: temmie[randomIndexes[i]].source,
+                subject: media[i].subject,
                 url: temmie[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${temmie[randomIndexes[i]].mediaID}`,
                 user: temmie[randomIndexes[i]].user,
@@ -111,6 +113,7 @@ function randomImage(subject,count) {
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: davinky[randomIndexes[i]].source,
+                subject: media[i].subject,
                 url: davinky[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${davinky[randomIndexes[i]].mediaID}`,
                 user: davinky[randomIndexes[i]].user,
@@ -125,6 +128,7 @@ function randomImage(subject,count) {
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: media[randomIndexes[i]].source,
+                subject: media[i].subject,
                 url: media[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${media[randomIndexes[i]].mediaID}`,
                 user: media[randomIndexes[i]].user,
@@ -180,14 +184,17 @@ app.get('/poms/:count?/:subject?', async function(req, res) {
         const i = randomNumber(0,media.length-1);
         res.status(200).send({
             message : 'Here is a random pom pic for you :>',
-            data : {
-                source: media[i].source,
-                url: media[i].url,
-                tweet: `https://twitter.com/user/status/${media[i].mediaID}`,
-                user: media[i].user,
-                content: media[i].content,
-                created_at: media[i].created_at
-            }
+            data : [
+                {
+                    source: media[i].source,
+                    subject: media[i].subject,
+                    url: media[i].url,
+                    tweet: `https://twitter.com/user/status/${media[i].mediaID}`,
+                    user: media[i].user,
+                    content: media[i].content,
+                    created_at: media[i].created_at
+                }
+            ]
         });
     }
 
