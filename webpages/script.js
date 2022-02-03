@@ -1,7 +1,8 @@
 // Get images from server
-async function fetchImages(count) {
+async function fetchImages(count, subject) {
+    if (subject === null) { subject = '' };
     const media = await fetch(
-        `https://lilypupchu-api.herokuapp.com/poms/${count}`,
+        `https://lilypupchu-api.herokuapp.com/poms/?count=${count}&subject=${subject}`,
         {
             method: 'GET'
         }
@@ -13,6 +14,11 @@ async function fetchImages(count) {
     });
     const data = media.data;
     mediaList = mediaList.concat(data);
+
+    if (subject === '') { justList = justList.concat(data); return };
+    if (subject === 'both') { bothList = bothList.concat(data); return };
+    if (subject === 'temmie') { temmieList = temmieList.concat(data); return };
+    if (subject === 'davinky') { vinkyList = vinkyList.concat(data); return };
 };
 
 // Cache images:
@@ -46,17 +52,12 @@ function checkAvail(url,quit) {
     )
     .then((res) => {  
         if (res.status === 404) {
-            quit = true;
-            return (
-                notFound(), quit
-            );
+            return nextImg();
         }
         else if (res.status !== 200) {
-            quit = true;
-            return(
-                notFound(), quit
-            );
+            return nextImg();
         };
+        return;
     })
     .catch(error => {
         console.log('Error calling the API: ', error);
@@ -64,97 +65,86 @@ function checkAvail(url,quit) {
     });
 };
 
-// 404 --> change image
-function notFound() {
-    document.getElementById("main-image").src='./404.png';
-    document.getElementById("main-container-background").src='./404.png';
-};
-
 // Remove just used image from mediaList, then display next image, if currentImageInBatch < (${batchSize}-5) images then pre-fetch new batch
-function nextImg() {
+function nextImg(subject, subjectArray) {
     inputLocked = true;
     
-    mediaList.splice(0,1);
+    subjectArray.splice(0,1);
 
-    let quit = false;
-    checkAvail(mediaList[0].url,quit);
-    if (quit === true) return nextImg();
+    checkAvail(subjectArray[0].url,subjectArray);
 
-    document.getElementById("main-image").src=mediaList[0].url;
-    document.getElementById("main-container-background").src=mediaList[0].url;
+    document.getElementById("main-image").src=subjectArray[0].url;
+    document.getElementById("main-container-background").src=subjectArray[0].url;
 
-    if (mediaList.length < 5) {
-        inputLocked = true;
-        mediaList_old_length = mediaList.length;
-        fetchImages(batchSize).then(() => {
+    if (subjectArray.length < 5) {
+        fetchImages(batchSize, subject).then(() => {
             inputLocked = false;
             let images = [];
-            for (let i=(mediaList_old_length); i<mediaList.length; i++) {
+            for (let i=0; i<mediaList.length; i++) {
                 images.push(mediaList[i].url);
             };
             preloadImages(images);
+            mediaList = [];
         });
     };
 
     inputLocked = false;
 };
 
-const batchSize = 16;
-var mediaList = [];
-var mediaList_old_length = 0; // index
-var inputLocked = false;
+const batchSize = 10;
+let mediaList = []; // temporary, just to cache images
+let justList = [];
+let temmieList = [];
+let vinkyList = [];
+let bothList = [];
+let inputLocked = false;
 
 window.onload = function() {
-    fetchImages(batchSize).then(() => {
-        inputLocked = true;
+    inputLocked = true;
+    fetchImages(4, null);
+    fetchImages(4, 'both');
+    fetchImages(4, 'temmie');
+    fetchImages(4, 'davinky');
 
+    setTimeout(() => {
         let images = [];
-        for (let i=(mediaList_old_length); i<mediaList.length; i++) {
+        for (let i=0; i<mediaList.length; i++) {
             images.push(mediaList[i].url);
         };
         preloadImages(images);
+        mediaList = [];
 
-        setTimeout(() => {
-            document.getElementById("main-image").src=mediaList[0].url;
-            document.getElementById("main-container-background").src=mediaList[0].url;
-            inputLocked = false;
-        }, 2000);
-    });
+        document.getElementById("main-image").src=justList[0].url;
+        document.getElementById("main-container-background").src=justList[0].url;
+        inputLocked = false;
+    }, 2000);
 };
 
 
 
-
+// up --> random // left vinky // right temmie // down both
 
 // Keys event!
 
 window.addEventListener("keydown", checkKeyPressed, false);
 function checkKeyPressed(evt) {
-    if (evt.keyCode == "38") { //up
+    if (evt.keyCode == "38" || evt.keyCode == "87") { //up
         if (inputLocked) return;
-        var arrowKey = document.getElementById("up");
-        arrowKey.classList.add("pressed");
-        var compass = document.getElementById("both-on-top");
+        var compass = document.getElementById("just-on-top");
         compass.classList.add("popped");
     };
-    if (evt.keyCode == "37") { //left
+    if (evt.keyCode == "37" || evt.keyCode == "65") { //left
         if (inputLocked) return;
-        var arrowKey = document.getElementById("left");
-        arrowKey.classList.add("pressed");
         var compass = document.getElementById("vinky-on-left");
         compass.classList.add("popped");
     };
-    if (evt.keyCode == "40") { //down
+    if (evt.keyCode == "40" || evt.keyCode == "83") { //down
         if (inputLocked) return;
-        var arrowKey = document.getElementById("down");
-        arrowKey.classList.add("pressed");
-        var compass = document.getElementById("else-down-bottom");
+        var compass = document.getElementById("both-down-bottom");
         compass.classList.add("popped");
     };
-    if (evt.keyCode == "39") { //right
+    if (evt.keyCode == "39" || evt.keyCode == "68") { //right
         if (inputLocked) return;
-        var arrowKey = document.getElementById("right");
-        arrowKey.classList.add("pressed");
         var compass = document.getElementById("temmie-on-right");
         compass.classList.add("popped");
     };
@@ -162,41 +152,33 @@ function checkKeyPressed(evt) {
 
 window.addEventListener("keyup", checkKeyReleased, false);
 function checkKeyReleased(evt) {
-    if (evt.keyCode == "38") { //up
+    if (evt.keyCode == "38" || evt.keyCode == "87") { //up
         if (inputLocked) return;
-        var arrowKey = document.getElementById("up");
-        arrowKey.classList.remove("pressed");
-        var compass = document.getElementById("both-on-top");
+        var compass = document.getElementById("just-on-top");
         compass.classList.remove("popped");
         
-        nextImg();
+        nextImg(null, justList);
     };
-    if (evt.keyCode == "37") { //left
+    if (evt.keyCode == "37" || evt.keyCode == "65") { //left
         if (inputLocked) return;
-        var arrowKey = document.getElementById("left");
-        arrowKey.classList.remove("pressed");
         var compass = document.getElementById("vinky-on-left");
         compass.classList.remove("popped");
         
-        nextImg();
+        nextImg('davinky', vinkyList);
     };
-    if (evt.keyCode == "40") { //down
+    if (evt.keyCode == "40" || evt.keyCode == "83") { //down
         if (inputLocked) return;
-        var arrowKey = document.getElementById("down");
-        arrowKey.classList.remove("pressed");
-        var compass = document.getElementById("else-down-bottom");
+        var compass = document.getElementById("both-down-bottom");
         compass.classList.remove("popped");
         
-        nextImg();
+        nextImg('both', bothList);
     };
-    if (evt.keyCode == "39") { //right
+    if (evt.keyCode == "39" || evt.keyCode == "68") { //right
         if (inputLocked) return;
-        var arrowKey = document.getElementById("right");
-        arrowKey.classList.remove("pressed");
         var compass = document.getElementById("temmie-on-right");
         compass.classList.remove("popped");
         
-        nextImg();
+        nextImg('temmie', temmieList);
     };
 };
 

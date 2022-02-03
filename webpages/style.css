@@ -76,10 +76,8 @@ body {
     object-fit: contain;
     filter: unset;
     -webkit-filter: unset;
-    filter: drop-shadow(0px 0px 15px black)
+    filter: drop-shadow(0px 0px 15px black);
 }
-
-
 
 h1 {
     color: var(--body-text-color-2);
@@ -88,55 +86,28 @@ h1 {
     z-index: 100;
 }
 
-/* 
-    Keys styling credits goes to Leo Baker-Hytch
-        https://codepen.io/lbakerhytch/pen/AiJau
+.note {
+    position: fixed;
+    bottom: 2.5vh;
+    right: 2.5vw;
+    width: fit-content;
+    height: fit-content;
+    opacity: 0.5;
+    font-size: 0.9em;
+    transition: ease-in-out 200ms;
+}
 
-*/
-.keys {
-    position: absolute;
-    top: -2em;
-    right: -2em;
-    margin: auto;
-    text-align: center;
-    line-height: 7.69rem;
-    height: 16rem;
-    transform: scale(0.5);
-    z-index: 10;
+#note-text {
+    color: #fff;
+    filter: drop-shadow(0px 0px 15px rgb(255, 246, 219));
 }
-  
-.keys div {
-    font-size: 2.4rem;
-    display: inline-block;
-    padding: 1rem;
-    margin: 0 0.25rem;
-    height: 4rem;
-    width: 4rem;
-    line-height: 3.6rem;
-    text-align: center;
-    vertical-align: bottom;
-    color: white;
-    border-style: solid;
-    border-width: 0.4rem 0.45rem 0.6rem;
-    border-radius: 1rem;
-    border-color: #99e6bd #64b98c #64b98c #74d2a0;
-    background: #7de3ad;
-    -moz-transition: all 96ms ease;
-    -o-transition: all 96ms ease;
-    -webkit-transition: all 96ms ease;
-    transition: all 96ms ease;
-    filter: hue-rotate(227deg) brightness(70%) drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
-    opacity: 0.6;
-}
-  
-.keys .pressed {
-    border-bottom-width: 0.4rem;
-    text-shadow: 0 0 10px white;
-    filter: hue-rotate(227deg) brightness(85%) drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
+
+.note:hover {
     opacity: 0.75;
+    transform: scale(1.01);
+    transition: ease-in-out 200ms;
+    cursor: text;
 }
-
-
 
 .temmie-on-right {
     position: fixed;
@@ -152,6 +123,7 @@ h1 {
     font-weight: bold;
     filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
     transition: ease-out 250ms;
+    cursor: pointer;
 }
 
 .vinky-on-left {
@@ -168,9 +140,10 @@ h1 {
     font-weight: bold;
     filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
     transition: ease-out 250ms;
+    cursor: pointer;
 }
 
-.both-on-top {
+.just-on-top {
     position: fixed;
     flex-direction: column;
     left: 50%;
@@ -184,9 +157,10 @@ h1 {
     font-weight: bold;
     filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
     transition: ease-out 250ms;
+    cursor: pointer;
 }
 
-.else-down-bottom {
+.both-down-bottom {
     position: fixed;
     flex-direction: column;
     left: 50%;
@@ -200,6 +174,7 @@ h1 {
     font-weight: bold;
     filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
     transition: ease-out 250ms;
+    cursor: pointer;
 }
 
 .popped {

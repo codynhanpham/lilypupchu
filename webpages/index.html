@@ -38,27 +38,22 @@
         </div>
     </div>
 
-    <div class="keys">
-        <div class="up" data-key="38" id="up">↑</div>
-        <br />
-        <div class="left" data-key="37" id="left">←</div>
-        <div class="down" data-key="40" id="down">↓</div>
-        <div class="right" data-key="39" id="right">→</div>
-    </div>
-
-    <div class="temmie-on-right" id="temmie-on-right">
+    <div class="temmie-on-right" id="temmie-on-right" onclick="nextImg('temmie', temmieList)">
         <span style="font-size: 1.3em; font-weight: 400;">ᐅ</span></br><span>Temmie</span>
     </div>
-    <div class="vinky-on-left" id="vinky-on-left">
+    <div class="vinky-on-left" id="vinky-on-left" onclick="nextImg('davinky', vinkyList)">
         <span style="font-size: 1.3em; font-weight: 400;">ᐊ</span></br><span>DaVinky</span>
     </div>
-    <div class="both-on-top" id="both-on-top">
-        <span style="font-size: 1.3em; font-weight: 400;">ᐃ</span></br><span>Both</span>
+    <div class="just-on-top" id="just-on-top" onclick="nextImg(null, justList)">
+        <span style="font-size: 1.3em; font-weight: 400;">ᐃ</span></br><span>JUST</span>
     </div>
-    <div class="else-down-bottom" id="else-down-bottom">
-        <span>Else</span></br><span style="font-size: 1.3em; font-weight: 400;">ᐁ</span>
+    <div class="both-down-bottom" id="both-down-bottom" onclick="nextImg('both', bothList)">
+        <span>Both</span></br><span style="font-size: 1.3em; font-weight: 400;">ᐁ</span>
     </div>
 
+    <div class="note">
+        <span id="note-text">You can change image with<br>either WASD or arrow keys!</span>
+    </div>
     
 </body>
 </html>
