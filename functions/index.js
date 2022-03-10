@@ -83,7 +83,7 @@ function randomImage(subject,count) {
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: both[randomIndexes[i]].source,
-                subject: media[i].subject,
+                subject: both[i].subject,
                 url: both[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${both[randomIndexes[i]].mediaID}`,
                 user: both[randomIndexes[i]].user,
@@ -98,7 +98,7 @@ function randomImage(subject,count) {
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: temmie[randomIndexes[i]].source,
-                subject: media[i].subject,
+                subject: temmie[i].subject,
                 url: temmie[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${temmie[randomIndexes[i]].mediaID}`,
                 user: temmie[randomIndexes[i]].user,
@@ -113,7 +113,7 @@ function randomImage(subject,count) {
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: davinky[randomIndexes[i]].source,
-                subject: media[i].subject,
+                subject: davinky[i].subject,
                 url: davinky[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${davinky[randomIndexes[i]].mediaID}`,
                 user: davinky[randomIndexes[i]].user,
