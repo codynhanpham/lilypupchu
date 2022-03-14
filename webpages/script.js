@@ -91,7 +91,7 @@ function nextImg(subject, subjectArray) {
     inputLocked = false;
 };
 
-const batchSize = 10;
+const batchSize = 15;
 let mediaList = []; // temporary, just to cache images
 let justList = [];
 let temmieList = [];

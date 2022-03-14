@@ -48,12 +48,12 @@ body {
 
 .main-container img {
     position: absolute;
-    width: 190vw;
-    height: 190vh;
+    width: 195vw;
+    height: 195vh;
     object-fit: cover;
     /* Add the blur effect */
-    filter: blur(40.0px) saturate(69%) brightness(69%);
-    -webkit-filter: blur(40.0px) saturate(69%) brightness(69%);
+    filter: blur(40.0px) saturate(69%) brightness(62%);
+    -webkit-filter: blur(40.0px) saturate(69%) brightness(62%);
 }
 
 .image-container {
