@@ -37,6 +37,13 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 .main-container img {
@@ -48,12 +55,10 @@ body {
     filter: blur(40.0px) saturate(69%) brightness(62%);
     -webkit-filter: blur(40.0px) saturate(69%) brightness(62%);
 
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+      -moz-user-drag: none;
+       -ms-user-drag: none;
 }
 
 .image-container {
@@ -100,6 +105,7 @@ h1 {
 #note-text {
     color: #fff;
     filter: drop-shadow(0px 0px 15px rgb(255, 246, 219));
+    -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
@@ -130,9 +136,7 @@ h1 {
     filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
     transition: ease-out 250ms;
     cursor: pointer;
-}
-
-.temmie-on-right span {
+    -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
@@ -156,9 +160,7 @@ h1 {
     filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
     transition: ease-out 250ms;
     cursor: pointer;
-}
-
-.vinky-on-left span {
+    -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
@@ -182,9 +184,7 @@ h1 {
     filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
     transition: ease-out 250ms;
     cursor: pointer;
-}
-
-.just-on-top span {
+    -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
@@ -208,9 +208,7 @@ h1 {
     filter: drop-shadow(0px 0px 25px rgb(0, 0, 0));
     transition: ease-out 250ms;
     cursor: pointer;
-}
-
-.both-down-bottom span {
+    -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
