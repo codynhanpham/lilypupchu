@@ -128,7 +128,7 @@ function randomImage(subject,count) {
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: media[randomIndexes[i]].source,
-                subject: media[i].subject,
+                subject: media[randomIndexes[i]].subject,
                 url: media[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${media[randomIndexes[i]].mediaID}`,
                 user: media[randomIndexes[i]].user,
