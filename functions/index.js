@@ -51,25 +51,25 @@ async function getImages(){
 getImages();
 
 
-function randomNumber(min, max) {
+function randomNumber(min, max) { // min max inclusive
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-function randomList(range, outputCount) {
+function randomList(range, outputCount) { // min = 0, max = range exclusive --> Use for indexes ;)
     let arr = [];
-    for (let i = 0; i <= range; i++) {
-      arr.push(i);
+    for (let i = 0; i < range; i++) {
+        arr.push(i);
     };
   
     let result = [];
   
     for (let i = 1; i <= outputCount; i++) {
-      const random = Math.floor(Math.random() * (range - i));
-      result.push(arr[random]);
-      arr[random] = arr[range - i];
-    }
+        const random = Math.floor(Math.random() * (range - i));
+        result.push(arr[random]);
+        arr[random] = arr[range - i];
+    };
   
     return result;
 };
@@ -79,11 +79,11 @@ function randomImage(subject,count) {
     if (count === null || count === undefined) {count = 1};
 
     if (subject === 'both') {
-        let randomIndexes = randomList(both.length-1,Math.floor(count));
+        let randomIndexes = randomList(both.length,Math.floor(count));
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: both[randomIndexes[i]].source,
-                subject: both[i].subject,
+                subject: both[randomIndexes[i]].subject,
                 url: both[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${both[randomIndexes[i]].mediaID}`,
                 user: both[randomIndexes[i]].user,
@@ -94,11 +94,11 @@ function randomImage(subject,count) {
         };
     }
     else if (subject === 'temmie') {
-        let randomIndexes = randomList(temmie.length-1,Math.floor(count));
+        let randomIndexes = randomList(temmie.length,Math.floor(count));
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: temmie[randomIndexes[i]].source,
-                subject: temmie[i].subject,
+                subject: temmie[randomIndexes[i]].subject,
                 url: temmie[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${temmie[randomIndexes[i]].mediaID}`,
                 user: temmie[randomIndexes[i]].user,
@@ -109,11 +109,11 @@ function randomImage(subject,count) {
         };
     }
     else if (subject === 'davinky') {
-        let randomIndexes = randomList(davinky.length-1,Math.floor(count));
+        let randomIndexes = randomList(davinky.length,Math.floor(count));
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: davinky[randomIndexes[i]].source,
-                subject: davinky[i].subject,
+                subject: davinky[randomIndexes[i]].subject,
                 url: davinky[randomIndexes[i]].url,
                 tweet: `https://twitter.com/user/status/${davinky[randomIndexes[i]].mediaID}`,
                 user: davinky[randomIndexes[i]].user,
@@ -124,7 +124,7 @@ function randomImage(subject,count) {
         };
     }
     else if (subject === null || subject === undefined) {
-        let randomIndexes = randomList(media.length-1,Math.floor(count));
+        let randomIndexes = randomList(media.length,Math.floor(count));
         for (let i=0; i<randomIndexes.length; i++) {
             const data = {
                 source: media[randomIndexes[i]].source,
@@ -198,10 +198,10 @@ app.get('/poms/:count?/:subject?', async function(req, res) {
         });
     }
 
-    // Cap max at 20
-    else if (!isNaN(Number.parseInt(count)) && Math.floor(count) > 25) {
+    // Cap max at 69
+    else if (!isNaN(Number.parseInt(count)) && Math.floor(count) > 69) {
         res.status(400).send({
-            error: `Maximum image count per request is 25. Capping it at 25 helps lower the cost to run the server... At the same time, with the current collection size of ${both.length} for images with both Temmie and Davinky, or ${davinky.length} for images of Davinky, higher count per request is kinda messed up (vouch for more pics of Vinky pls :">). Idk, I might raise this number higher in the future, or just let the count matches the maximum available images whenever it's higher.`
+            error: `Maximum image count per request is 69. Capping it at 69 helps lower the cost to run the server... At the same time, with the current collection size of ${both.length} for images with both Temmie and Davinky, or ${davinky.length} for images of Davinky, higher count per request is kinda messed up (vouch for more pics of Vinky pls :">). Idk, I might raise this number higher in the future, or just let the count matches the maximum available images whenever it's higher.`
         });
     }
 
@@ -228,7 +228,7 @@ app.get('/poms/:count?/:subject?', async function(req, res) {
         }
         else { // Syntax error
             res.status(400).send({
-                error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 25, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
+                error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 69, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
             });
         };
     }
@@ -244,7 +244,7 @@ app.get('/poms/:count?/:subject?', async function(req, res) {
         }
         else if (isNaN(Number.parseInt(count)) || !listOfSubject.includes(subject.toLowerCase())) {
             res.status(400).send({
-                error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 25, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
+                error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 69, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
             });
         }
         else if (!isNaN(Number.parseInt(count)) && Math.floor(count) <= 0) { // dude... c'mon...
@@ -254,14 +254,14 @@ app.get('/poms/:count?/:subject?', async function(req, res) {
         }
         else { // Syntax error
             res.status(400).send({
-                error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 25, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
+                error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 69, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
             });
         };
     }
 
     // this is just for the query request...
     else if (!count && subject) { 
-        if (listOfSubject.includes(subject.toLowerCase())) { // nah, it's a requested subject. i know. it looks weird...
+        if (listOfSubject.includes(subject.toLowerCase())) {
             const imageList = randomImage(subject.toLowerCase(), 1);
             res.status(200).send({
                 message : `Here is a cute image of ${subject.toLowerCase()} for uwu ~`,
@@ -270,14 +270,14 @@ app.get('/poms/:count?/:subject?', async function(req, res) {
         }
         else { // Syntax error
             res.status(400).send({
-                error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 25, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
+                error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 69, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
             });
         };
     }
 
     else { // Syntax error
         res.status(400).send({
-            error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 25, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
+            error: 'Syntax error. The api endpoint is /poms/:count?/:subject? ; for example: /poms/2/temmie ; count must be <= 69, and subject can be "temmie" OR "davinky" OR "both". Leaving count empty will set it to 1 by default, while leaving subject empty will set it to a random one of the three.'
         });
     };
 });
